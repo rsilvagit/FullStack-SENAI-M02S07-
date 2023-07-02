@@ -1,25 +1,22 @@
-import { useState,useEffect } from "react"
+import { useState } from "react"
 import Task from "../pages/Task/Task";
 
-export default function Formulario({tarefas}){
-    const [taskName, setTaskName] = useState("");
-    const [isCompleted, setIsCompleted] = useState(false);
-    const [tasks, setTasks] = useState([]);
-    
-    useEffect(() => {
-        document.title = `Total de tarefas: ${tarefas.length}`;
-      }, [tasks]);
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        setTasks((prevTasks) => [...prevTasks, { name: taskName, isCompleted }]);
-        setTaskName("");
-      };
-      
+export default function Formulario({handleSubmit}){
+  const [form, setForm] = useState()
+  const criarTarefa = (event) => {
+    event.preventDefault()
+    handleSubmit(form)
+  }
+
+    const handleChange = (event) => {
+      setForm(event.target.value)
+    }
     return(
-        <form onSubmit={handleSubmit}>
-            <input placeholder="Digite uma nova tarefa" type="text" value={taskName} onChange={(e)=>setTaskName(e.target.value)}
-            />
-            <button type="submit">Criar Tarefa</button>
+        <form onSubmit={criarTarefa}>
+            <input placeholder="Digite uma nova tarefa" type="text" value={form} onChange={handleChange} className="form-control"/>
+            <button type="submit" className="btn btn-primary btn-sm">Criar Tarefa</button>
         </form>
     )
 }
+
+
