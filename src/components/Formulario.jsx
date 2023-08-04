@@ -24,7 +24,7 @@ export default function Formulario({handleSubmit}){
         <form onSubmit={criarTarefa}>
             <input placeholder="Digite uma nova tarefa" type="text" value={form} onChange={handleChange} ref={inputRef} className="form-control"/>
             {error&&<div className="error">{error}</div>}
-            <button type="submit" className="btn btn-primary btn-sm">Criar Tarefa</button>
+            <button type="submit" className="btn btn-primary btn-sm mx-1">Criar Tarefa</button>
         </form>
     )
 }
